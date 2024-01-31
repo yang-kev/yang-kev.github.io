@@ -1,0 +1,232 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+\usepackage{comment}
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 154: Probability Theory, HW 2\vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+%%%
+\section*{Due Feb 6, 2024 by 9am}
+%%%
+\emph{Remember, if you are stuck, take a look at the lemmas/theorems/examples from class, and see if anything looks familiar.}
+%%%
+\section{Some practice}
+%%%
+%%%
+\subsection{Poisson and binomial distributions show up everywhere}
+%%%
+Let $X$ and $Y$ be independent Poisson random variables with parameters $\lambda$ and $\mu$, respectively. 
+%%%
+\begin{enumerate}
+\item By computing the pmf of $X+Y$, show that $X+Y$ is a Poisson random variable with parameter $\lambda+\mu$
+\item By computing $\mathbb{P}(X=k|X+Y=n)$, show that $\mathbb{P}(X=k|X+Y=n)=p(k)$, where $p(k)$ is the pmf for a Binomial distribution (with parameters that you must compute).
+\end{enumerate}
+%%%
+%%%
+\subsection{What?}
+%%%
+Suppose $X$ is a geometric random variable. Show that $\mathbb{P}(X=n+k|X>n)=\mathbb{P}(X=k)$ for any integers $k,n\geq1$. (This is called the ``memorylessness" property.)
+%%%
+\subsection{For some reason, probabilists like urns}
+%%%
+An urn contains $N$ balls, $b$ of which are blue and $r=N-b$ of which are red. Let us randomly take $n$ of the $N$ balls (without replacement). If $R$ is the number of red balls drawn, explain briefly why
+%
+\begin{align*}
+\mathbb{P}(R=k)=\frac{\binom{r}{k}\binom{N-r}{n-k}}{\binom{N}{n}}.
+\end{align*}
+%
+This is the \emph{hypergeometric distribution}. Now, take the limit $b,N,r\to\infty$ and suppose $\frac{r}{N}\to p$ (and thus $\frac{b}{N}\to 1-p$). (In words, keep a constant fraction of blue and red balls.) Compute the limit of $\mathbb{P}(R=k)$ as $N\to\infty$, i.e. confirm that
+%
+\begin{align}
+\mathbb{P}(R=k)\to\binom{n}{k}p^{k}(1-p)^{n-k}.
+\end{align}
+%
+(This is saying that in the limit of infinitely many balls, sampling with and without replacement is the same, as long as the number of samples $n$ and the proportion of colors is fixed.) (\emph{Hint}: it may help to use $\frac{\binom{X}{y}}{\frac{1}{y!}X^{y}}\to1$ as $X\to\infty$ and $y$ is fixed, i.e. not large.)
+%
+%
+%
+%%%
+\section{Some lemmas (and another urn)}
+%%%
+%%%
+\subsection{The ``layer-cake formula" (and an application)}
+%%%
+%%%
+\begin{enumerate}
+\item Suppose $X$ is a discrete random variable that takes values in the non-negative integers. Show that $\E(X)=\sum_{n=0}^{\infty}\mathbb{P}(X>n)$.
+\item An urn contains $b$ blue and $r$ red balls. Balls are removed from the urn at random one-by-one. Compute the expected number of turns that we must take until the first red balls is drawn. (You should get $\frac{b+r+1}{r+1}$, but show your work.)
+\end{enumerate}
+%%%
+%%%
+\subsection{Maximum disorder}
+%%%
+Let $X_{1},\ldots,X_{n}$ be independent Bernoulli random variables with parameters $p_{1},\ldots,p_{n}\in[0,1]$, respectively. Define $Y=X_{1}+\ldots X_{n}$.
+%%%
+\begin{enumerate}
+\item Show that $\E(Y)=\sum_{k=1}^{n}p_{k}$ and $\mathrm{Var}(Y)=\sum_{k=1}^{n}p_{k}(1-p_{k})$. \item Suppose we fix the value of $\E(Y)$ (to be, say, $E$). Show that the choice of $p_{1},\ldots,p_{n}$ which maximizes $\mathrm{Var}(Y)$ satisfies $p_{1}=\ldots=p_{n}$. (This part has nothing random in it. You can do it by Lagrange multipliers or by plugging in $p_{n}=E-(p_{1}+\ldots+p_{n-1})$ into the variance formula and maximizing over $n-1$ variables without any constraints by using calculus.)
+\end{enumerate}
+%%%
+%%%
+\begin{comment}
+%%%
+\subsection{The FKG inequality}
+%%%
+For any $p\in[0,1]$, let $X(p)\sim\mathrm{Bern}(p)$. We say a function $f:\{0,1\}\to\R$ is increasing if $f(0)\leq f(1)$.
+%For any $p\in[0,1]$, let $\mathbf{X}(p)=(X_{1}(p),\ldots,X_{n}(p))$ be a vector whose entries are independent Bernoulli random variables with parameter $p$. Let $f:\{0,1\}^{n}\to\R$ be increasing, i.e. $f(\mathbf{x})\leq f(\mathbf{y})$ for any $\mathbf{x},\mathbf{y}\in\{0,1\}^{n}$ such that $\mathbf{x}_{i}\leq\mathbf{y}_{i}$ for all $i\in\{1,\ldots,n\}$.
+%%%
+\begin{enumerate}
+\item Compute $\E f(X(p))$ for any $p$ in terms of $f(0)$ and $f(1)$. Use this formula to explain why $\E f(X(p_{1}))\leq \E f(X(p_{2}))$ if $p_{1}\leq p_{2}$.
+\item Explain briefly why the product of two increasing functions is increasing.
+\item Suppose $p=\frac12$. Let $f,g:\{0,1\}\to\R$ be increasing functions such that $\E f(X(p))=0$ and $\E g(X(p))=0$. Show that $\mathrm{Cov}(f(X(p)),g(X(p)))=\E f(X(p))g(X(p))\geq0$.
+\item Suppose $p=\frac12$. Let $f,g:\{0,1\}\to\R$ be increasing. Show $\mathrm{Cov}(f(X(p)),g(X(p)))\geq0$. (\emph{Hint}: covariance does not change if we shift $f(X(p))$ and $g(X(p))$ by constants. In other words, consider $h(x)=f(x)-\E f(X(p))$ and $j(x)=g(x)-\E g(X(p))$.)
+\end{enumerate}
+%%%
+\end{comment}
+%%%
+%%%
+\subsection{An old friend, the covariance matrix}
+%%%
+Let $X_{1},\ldots,X_{n}$ be (possibly dependent) random variables. Define the matrix $\mathrm{Cov}(\mathbf{X})$ as an $n\times n$ matrix with entries $\mathrm{Cov}(\mathbf{X})_{ij}=\mathrm{Cov}(X_{i},X_{j})$. Let $\mathbf{X}=(X_{1},\ldots,X_{n})$ be the vector with entries $X_{1},\ldots,X_{n}$.
+%%%
+\begin{enumerate}
+\item Show that for any $\mathbf{v}=(v_{1},\ldots,v_{n})$, we have $\mathbf{v}\mathrm{Cov}(\mathbf{X})\mathbf{v}^{T}=\mathrm{Var}(\mathbf{v}\cdot\mathbf{X})\geq0$. 
+\item Show that $\mathrm{Cov}(\mathbf{X})$ is invertible if and only if the following is satisfied:
+%%%
+\begin{itemize}
+\item If $\mathbf{v}\cdot\mathbf{X}$ is a constant random variables, then $\mathbf{v}$ is the zero vector.
+\end{itemize}
+%%%
+(\emph{Hint}: what condition on the null-space is equivalent to a square matrix being invertible?)
+\end{enumerate}
+%%%
+
+
+
+
+
+
+
+\end{document}
+%%%
