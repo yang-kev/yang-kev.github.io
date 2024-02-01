@@ -1,0 +1,257 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 154: Probability Theory, HW 1\vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+%%%
+\section*{Due January 30, 2024 by 9am}
+%%%
+\emph{Remember, if you are stuck, take a look at the lemmas/theorems/examples from class, and see if anything looks familiar.}
+%%%
+\section{Some practice}
+%%%
+%%%
+\subsection{Dice}
+%%%
+A traditional fair dice (with numbers $1$ through $6$) is thrown twice. Assuming that the rolls are independent, compute the probability that:
+%%%
+\begin{enumerate}
+\item exactly one $6$ is thrown
+\item both rolls are odd numbers
+\item the sum of the rolls is $4$
+\item the sum of the rolls is divisible by $3$
+\end{enumerate}
+%%%
+%%%
+\subsection{Coins}
+%%%
+Take a coin where the probability of heads is $p$ and the probability of tails is $1-p$. Toss this coin repeatedly. As a function of $n\geq0$ and $p$, compute the probability that on the $n$-th throw:
+%%%
+\begin{enumerate}
+\item heads appears for the first time
+\item the number of heads and the number of tails to date are equal
+\item exactly two heads have appeared in total to date
+\item at least two heads have appeared to date
+\end{enumerate}
+%%%
+%%%
+\subsection{Manipulation of events}
+%%%
+Take two events $A,B$. Show that the probability that exactly one of $A$ or $B$ occurs is equal to $\mathbb{P}(A)+\mathbb{P}(B)-2\mathbb{P}(A\cap B)$.
+%%%
+\section{Some lemmas}
+%%%
+%%%
+\subsection{Some practice with conditional probability}
+%%%
+Take three events $A,B,C$. 
+%%%
+\begin{enumerate}
+\item Show that $\mathbb{P}(A\cup B\cup C)=1-\mathbb{P}(A^{c}|B^{c}\cap C^{c})\mathbb{P}(B^{c}|C^{c})\mathbb{P}(C^{c})$.
+\item Assume that $A$ and $B$ are independent after conditioning on $C$ (i.e. $\mathbb{P}(A\cap B|C)=\mathbb{P}(A|C)\mathbb{P}(B|C)$). Does this imply that $A$ and $B$ are independent? (If yes, show it. If not, give an example.)
+\item Conversely, assume that $A$ and $B$ are independent. Is it true that $A$ and $B$ are independent after conditioning on $C$?
+\end{enumerate}
+%%%
+%%%
+\subsection{Bayes' formula}
+%%%
+\emph{This is one of the most important things in statistics!} Let $\Omega$ be a probability space, and let $A_{1},\ldots,A_{n}$ be a partition of $\Omega$, i.e. $A_{i}\cap A_{j}=\emptyset$ for any $i\neq j$, and $\cup_{i=1}^{n}A_{i}=\Omega$.  Suppose that $\mathbb{P}(A_{i})>0$ for all $i=1,\ldots,n$. Prove that 
+%
+\begin{align}
+\mathbb{P}(A_{j}|B)=\frac{\mathbb{P}(B|A_{j})\mathbb{P}(A_{j})}{\sum_{i=1}^{n}\mathbb{P}(B|A_{i})\mathbb{P}(A_{i})}.\nonumber
+\end{align}
+%
+%
+%
+%
+%%%
+\section{Some problems}
+%%%
+%%%
+\subsection{It is very important that $p$ is prime here}
+%%%
+Set $\Omega=\{1,\ldots,p\}$, where $p$ is prime. Let $\mathscr{F}$ be the set of all subsets of $\Omega$, and $\mathbb{P}(A)=|A|/p$ for any $A\in\mathscr{F}$. Assume that $A$ and $B$ are independent. Show that at least one of $A$ or $B$ is either $\Omega$ or $\emptyset$.
+%%%
+\subsection{More dice}
+%%%
+Suppose we throw $N$ independent standard dice, where $N$ is a random number such that $\mathbb{P}(N=i)=2^{-i}$ for all integers $i\geq1$. Let $S$ be the sum of the $N$ values that we throw. Find the probability that:
+%%%
+\begin{enumerate}
+\item $N=2$ conditioning on $S=4$
+\item $S=4$ conditioning on $N$ being even
+\item $N=2$ conditioning on $S=4$ and the first throw being $1$
+\end{enumerate}
+%%%
+%%%
+\subsection{Be careful when driving in the snow}
+%%%
+There are two roads from $A$ to $B$ and two roads from $B$ to $C$. Each of the four roads is blocked by snow with probability $p$ independently of the others. Find the probability that there is an open road from $A$ to $B$ given that there is no open route from $A$ to $B$ to $C$.
+%%%
+\subsection{More coins}
+%%%
+Take a coin where the probability of heads is $p$ and the probability of tails is $1-p$. Let $p_{n}$ be the probability that an even number of heads have been tossed after $n$ tosses. (Zero counts as an even number.) Show that $p_{0}=1$, and show that for any $n\geq1$, 
+%
+\begin{align*}
+p_{n}=p(1-p_{n-1})+(1-p)p_{n-1}.
+\end{align*}
+%
+Using this formula, find a formula in terms of $p$ and $n$ of $p_{n}$. (You do not need to prove that your formula is correct, but you should feel free to.)
+%
+%
+%
+%%%
+\section{An optional problem (for those who want something to think about)}
+%%%
+%%%
+\subsection{A very inefficient way to board passengers}
+%%%
+Suppose there are $n$ passengers for a plane with $n$ seats to go from Boston to San Francisco. Each passenger is given their seat number, but the first passenger, say Kevin, to board lost their number and sits in a random seat. The other passengers board one at a time, trying to sit in their seat, or, if their seat is taken, sit in a random available seat. What is the probability that the last passenger sits in their assigned seat? Why?
+%%%
+\section{A very important question}
+%%%
+%%%
+\subsection{Thank you for answering this!}
+%%%
+How long did this homework take you? Did you find it hard, easy, something else? (Please feel free to be honest! It's better that I have a sense for if the homework is too long or short or something else.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+%%%
