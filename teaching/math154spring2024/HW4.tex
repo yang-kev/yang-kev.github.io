@@ -1,0 +1,223 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+\usepackage{comment}
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 154: Probability Theory, HW 4\vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+%%%
+\section*{Due Feb 13, 2024 by 9am}
+%%%
+\emph{Remember, if you are stuck, take a look at the lemmas/theorems/examples from class, and see if anything looks familiar.}
+%%%
+\section{Time to get to computations}
+%%%
+%%%
+\subsection{Laplace transform of an exponential random variable}
+%%%
+Let $X\sim\mathrm{Exp}(\lambda)$ (for $\lambda>0$). 
+%%%
+\begin{enumerate}
+\item Show that $\E e^{\xi X}=\frac{\lambda}{\lambda-\xi}$ for all $0\leq\xi<\lambda$, so that $\E e^{\xi X}$ if and only if $\xi<\lambda$ (you don't need to prove this last claim).
+\item Compute $\E X^{k}$ for $k=0,1,2,3,4$.
+\item Show that for any $\xi\in\R$, we have $\E e^{i\xi X}=\frac{\lambda}{\lambda-i\xi}$ for all $\xi\in\R$.
+\end{enumerate}
+%%%
+%%%
+\subsection{Laplace transform of a Poisson random variable}
+%%%
+Let $X\sim \mathrm{Pois}(\lambda)$.
+%%%
+\begin{enumerate}
+\item Show that $\E e^{\xi X}=e^{\lambda(e^{\xi}-1)}$.
+\item Compute $\E X^{k}$ for $k=1,2,3$.
+\item Use part (1) to show that if $X\sim\mathrm{Pois}(\lambda)$ and $Y\sim\mathrm{Pois}(\mu)$, then $X+Y\sim\mathrm{Pois}(\lambda+\mu)$.
+\end{enumerate}
+%%%
+%%%
+\subsection{Cauchy distribution}
+%%%
+We say that $X\sim\mathrm{Cauchy}$ if it is a continuous random variable on $\R$ with pdf $p(x)=\frac{1}{\pi(1+x^{2})}$.
+%%%
+\begin{enumerate}
+\item Show that $\int_{\R}p(x)dx=1$ using calculus, so that $p(x)$ is actually a pdf. (You can look up the antiderivative of $\frac{1}{1+x^{2}}$ and its properties; this is more just a check for you to do.)
+\item Show that $\E|X|=\infty$.
+\item Show that for any $\xi\in\R$, we have 
+%
+\begin{align*}
+\frac{1}{2\pi}\int_{\R}e^{-|\xi|}e^{-ix\xi}d\xi=\frac{1}{\pi(1+x^{2})}.
+\end{align*}
+%
+Conclude that if $X\sim\mathrm{Cauchy}$, then $\E e^{i\xi X}=e^{-|\xi|}$. Can you briefly explain briefly why this formula alone suggests that $\E X$ is not well-defined?
+\end{enumerate}
+%%%
+%%%
+\subsection{A concentration inequality}\label{subsection:concentration}
+%%%
+Suppose $X_{1},\ldots,X_{N}$ are i.i.d. random variables (i.e. they are independent and have the same distribution), and suppose $\E X_{i}=0$ and $\E e^{\lambda X_{i}}<\infty$ for all $\lambda\in\R$. Let $Y=\frac{X_{1}+\ldots+X_{N}}{N}$.
+%%%
+\begin{enumerate}
+\item Compute $\E e^{\lambda Y}$ in terms of the moment generating functions of $X_{1},\ldots,X_{N}$.
+\item Show that for any constants $\lambda,c>0$,
+%
+\begin{align*}
+\mathbb{P}[|Y|\geq c]\leq e^{-c\lambda}\E e^{\lambda Y}+e^{-c\lambda}\E e^{-\lambda Y}=e^{-c\lambda}\left(\prod_{i=1}^{N}\E e^{\frac{\lambda X_{i}}{N}}+\prod_{i=1}^{N}\E e^{\frac{-\lambda X_{i}}{N}}\right).
+\end{align*}
+%
+(\emph{Hint}: the LHS is $\leq\mathbb{P}[Y\geq c]+\mathbb{P}[-Y\geq c]$.)
+\item Using the inequality $e^{x}\leq1+x+x^{2}e^{x}$, show that $\E e^{\frac{\lambda X_{i}}{N}}\leq1+\frac{\lambda^{2}}{N^{2}}\E[X_{i}^{2}e^{\frac{\lambda X_{i}}{N}}]$.
+\item We will now choose $\lambda=N^{-1/2}$. Using the inequality $x^{2}e^{\kappa x}\leq e^{2x}+e^{-2x}$ for any $x\in\R$ and any $|\kappa|\leq1$, show that $\E X_{i}^{2}e^{\frac{\lambda X_{i}}{N}}\leq\E e^{2X_{i}}+\E e^{-2X_{i}}$, and thus $\E e^{\frac{\lambda X_{i}}{N}}\leq 1+\frac{C}{N}$ for some constant $C$.
+\item You can take for granted that the same argument shows $\E e^{-\frac{\lambda X_{i}}{N}}\leq 1+\frac{C}{N}$. Using the inequality $(1+\frac{C}{N})^{N}\leq e^{C}$, show that $\mathbb{P}[|Y|\geq c]\leq2e^{-c\sqrt{N}}e^{C}$.
+\end{enumerate}
+%%%
+%%%
+\subsection{An application of the law of large numbers}
+%%%
+Suppose I give you a coin and tell you that the probability of heads is $0.48$. Suppose you want to test if I am right. How many times $N$ do you have to flip this coin to be at least $95\%$ confident that it is biased towards heads? To be precise:
+%%%
+\begin{enumerate}
+\item Let $X_{1},\ldots,X_{N}\sim\mathrm{Bern}(p)$ with $p=0.48$ be independent. Set $Y=\frac{1}{N}\sum_{i=1}^{N}X_{i}$. Recall $\E Y=p$. Using the bound 
+%
+\begin{align*}
+\mathbb{P}[|Y-p|\geq 0.02]\leq \frac{\mathrm{Var}(X_{1})}{N(0.02)^{2}}
+\end{align*}
+%
+from class, how large do you have to take $N$ for this probability to be $\leq5\%$?
+\item What if we instead use the following bound (which is what you get when optimizing in Problem \ref{subsection:concentration}):
+%
+\begin{align*}
+\mathbb{P}[|Y-p|\geq 0.02]&\leq 2e^{-0.02\sqrt{N}}\E e^{X_{1}}.
+\end{align*}
+%
+Which bound produces the smaller $N$?
+\end{enumerate}
+%%%
+
+
+
+
+
+\end{document}
+%%%
