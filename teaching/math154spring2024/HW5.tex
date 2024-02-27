@@ -230,7 +230,7 @@ Suppose $X$ is a continuous random variable such that $\mathbb{P}[|X|\geq C]\leq
 \item Let $p$ be the pdf of $X$. Show
 %
 \begin{align*}
-\int_{\R}x^{2q}p(x)dx&=2q\int_{0}^{\infty}x^{2q}p(x)dx+2q\int_{0}^{\infty}x^{2q}p(-x)dx\\
+\int_{\R}x^{2q}p(x)dx&=\int_{0}^{\infty}x^{2q}p(x)dx+\int_{0}^{\infty}x^{2q}p(-x)dx\\
 &=2q\int_{0}^{\infty}x^{2q-1}\left(\int_{x}^{\infty}p(u)du\right)dx+2q\int_{0}^{\infty}x^{2q-1}\left(\int_{x}^{\infty}p(-u)du\right)dx\\
 &\leq 4q\int_{0}^{\infty}x^{2q-1}\mathbb{P}[|X|\geq x]dx\\
 &\leq 4q\int_{0}^{\infty}x^{2q-1}\exp\{-Kx^{2}\}dx.
