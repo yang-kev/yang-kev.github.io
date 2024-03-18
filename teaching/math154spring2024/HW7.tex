@@ -1,0 +1,225 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+\usepackage{comment}
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 154: Probability Theory, HW 7\vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+%%%
+\section*{Due March 19, 2024 by 9am}
+%%%
+\emph{Remember, if you are stuck, take a look at the lemmas/theorems/examples from class, and see if anything looks familiar.}
+%%%
+\section{Getting to know the central limit theorem}
+%%%
+%%%
+\subsection{Approximating a complicated expectation}
+%%%
+Let $\{X_{i}\}_{i=1}^{\infty}$ be i.i.d. random variables such that $\mathbb{P}[X_{i}=\pm1]=\frac12$. 
+%%%
+\begin{enumerate}
+\item Show that $\E X_{i}=0$ and $\mathrm{Var}(X_{i})=1$ for all $i$.
+\item Define $Y_{N}:=N^{-1/2}\sum_{i=1}^{N}X_{i}$. Using the central limit theorem, show
+%
+\begin{align*}
+\lim_{N\to\infty}\E|Y_{N}|=\int_{\R}|x|\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}\d x.
+\end{align*}
+%
+\item Compute $\lim_{N\to\infty}\E|Y_{N}|$ by evaluating the integral in part (2).
+\end{enumerate}
+%%%
+%%%
+\subsection{Approximating a complicated sum}
+%%%
+Fix any $x\geq0$. 
+%%%
+\begin{enumerate}
+\item Explain why for any $k\geq0$, we have $2^{-N}\binom{N}{k}=\mathbb{P}[S_{N}=k]$, where $S_{N}\sim\mathrm{Bin}(N,\frac12)$ is a sum of $N$ independent $\mathrm{Bern}(\frac12)$.
+\item Show that $2S_{N}-N$ is a sum of $N$ i.i.d. random variables with mean zero and variance $1$. Also show that 
+%
+\begin{align*}
+\sum_{\substack{k:N^{-1/2}|2k-N|\leq x}}2^{-N}\binom{N}{k}&=\mathbb{P}\left(-x\leq \frac{2S_{N}-N}{N^{1/2}}\leq x\right)
+\end{align*}
+%
+\item Show that as $N\to\infty$, we have 
+%
+\begin{align*}
+\sum_{\substack{k:|2k-N|\leq xN^{1/2}}}2^{-N}\binom{N}{k}\to\int_{-x}^{x}\frac{1}{\sqrt{2\pi}}e^{-\frac{u^{2}}{2}}\d u.
+\end{align*}
+%
+\item (Bonus, +2pt; please do not ask the CAs for help on this one): Show that 
+%
+\begin{align*}
+\sum_{\substack{k:\\N^{-1/2}|k-N|\leq x}}\frac{N^{k}}{k!}e^{-N}\to_{N\to\infty}\int_{-x}^{x}\frac{1}{\sqrt{2\pi}}e^{-\frac{u^{2}}{2}}\d u.
+\end{align*}
+%
+(\emph{Hint}: its the same argument; your job is to figure out exactly why.)
+\end{enumerate}
+%%%
+%%%
+\subsection{Stein's method}
+%%%
+We showed before that if $Z\sim N(0,1)$, then for any smooth function $f:\R\to\R$, we have $\E f'(Z)=\E Zf(Z)$. Conversely, suppose $W$ satisfies the property that for all smooth functions $f$, we have $\E f'(W)=\E Wf(W)$.
+%%%
+\begin{enumerate}
+\item Show that $\E W=0$ and $\E W^{2}=1$ and $\E W^{3}=0$ and $\E W^{4}=3$.
+\item (Bonus, +2pt; please do not ask the CAs for help on this one): Show that $W\sim N(0,1)$.
+\end{enumerate}
+%%%
+Note that this gives a new way of proving the central limit theorem. There are interpretations of this method from physics (in fact, the physicists may argue this is the \emph{right} way to prove the CLT); please see me if you would like to discuss this.
+%%%
+\subsection{A little exercise about Fourier transforms}
+%%%
+Suppose $X_{N}\to X$ and $Y_{N}\to Y$ in distribution. 
+%%%
+\begin{enumerate}
+\item Suppose also that $X_{N},Y_{N}$ are independent for each $N$, and that $X,Y$ are independent. Show that $X_{N}+Y_{N}\to X+Y$. (\emph{Hint}: use the Levy continuity theorem)
+\item Give a counterexample to the above when we remove the independence assumptions.
+\end{enumerate}
+%%%
+%%%
+\subsection{The moment method}
+%%%
+Let $\{X_{i}\}_{i=1}^{\infty}$ be i.i.d. random variables such that $\E X_{i}=0$ and $\E X_{i}^{2}=1$ and $\E |X_{i}|^{3}<\infty$ for all $i$. Define $S_{N}=N^{-1/2}(X_{1}+\ldots+X_{N})$.
+%%%
+\begin{enumerate}
+\item By expanding, show that 
+%
+\begin{align*}
+\E S_{N}^{3}=N^{-\frac32}\sum_{i=1}^{N}\E X_{i}^{3}+N^{-\frac32}\sum_{1\leq i\neq j\leq N}3\E X_{i}^{2}\E X_{j}+N^{-\frac32}\sum_{i\neq j, j\neq k, i\neq k}\E X_{i}X_{j}X_{k}.
+\end{align*}
+%
+\item Show that $\E S_{N}^{3}\to0$ as $N\to\infty$.
+\item (Bonus, +1pt; please do not ask the CAs for help on this one): Assume now that $\E|X_{i}|^{4}<\infty$ for all $i$. Show that $\E S_{N}^{4}\to3$ by the same type of expansion argument.
+\end{enumerate}
+%%%
+
+
+
+
+
+
+\end{document}
+%%%
