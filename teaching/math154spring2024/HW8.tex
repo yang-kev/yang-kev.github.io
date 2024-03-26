@@ -1,0 +1,214 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+\usepackage{comment}
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 154: Probability Theory, HW 8\vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+%%%
+\section*{Due April 2, 2024 by 9am}
+%%%
+\emph{Remember, if you are stuck, take a look at the lemmas/theorems/examples from class, and see if anything looks familiar.}
+%%%
+\section{Some practice with Markov chains}
+%%%
+%%%
+\subsection{Classification of states}\label{subsection:classification}
+%%%
+Consider the state space $\{A,B,C,D\}$. For each Markov chain below (specified by its transition matrix), specify which states (i.e. which of $A,B,C,D$) are recurrent and which are transient. (Recall a transition matrix $P$ has entries given by $P_{ij}=\mathbb{P}[i\to j]$.)
+%%%
+\begin{enumerate}
+\item $P_{1}=\begin{pmatrix}\frac12&\frac12&0&0\\\frac12&\frac12&0&0\\\frac14&0&\frac14&\frac12\\0&0&0&1\end{pmatrix}$\\
+\item $P_{2}=\begin{pmatrix}0&\frac12&\frac12&0\\\frac13&0&0&\frac23\\1&0&0&0\\0&0&1&0\end{pmatrix}$
+\item Find two row vectors $\pi_{1}$ and $\pi_{2}$ of length $4$ such that $\pi_{1}P_{1}=\pi_{1}$ and $\pi_{2}P_{1}=\pi_{2}$. Your two row vectors cannot be scalar multiplies of each (e.g. they must be linearly independent). What do you notice about the sign of each entry in $\pi_{1},\pi_{2}$?
+\end{enumerate}
+%%%
+%%%
+\subsection{A nice trick in computing long-time behavior of a Markov chain}
+%%%
+Consider $P_{1}$ from Problem \ref{subsection:classification}. We will see that diagonalization from linear algebra is actually useful.
+%%%
+\begin{enumerate}
+\item Compute $\mathrm{Tr} P_{1}$ and $\det P_{1}$.
+\item Compute the eigenvalues of $P_{1}$. (\emph{Hint}: the eigenvalues sum to the trace, and they multiply to the determinant. Use part (3) in Problem \ref{subsection:classification}.) 
+\item Label the eigenvalues as $\lambda_{1}\geq\lambda_{2}\geq\lambda_{3}\geq\lambda_{4}$, and let $\mathbf{v}_{1},\mathbf{v}_{2},\mathbf{v}_{3},\mathbf{v}_{4}$ be the associated left eigenvectors, so that $\mathbf{v}_{i}P_{1}=\lambda_{i}\mathbf{v}_{i}$. Show that $|\lambda_{3}|,|\lambda_{4}|<1$. Deduce that for $i=3,4$, we have $\mathbf{v}_{i}P_{1}^{n}\to\vec{0}$ as $n\to\infty$, where $\vec{0}=(0,0,0,0)$.
+\item Any vector $\mathbf{v}$ can be written as a linear combination $\mathbf{v}=\alpha_{1}\mathbf{v}_{1}+\alpha_{2}\mathbf{v}_{2}+\alpha_{3}\mathbf{v}_{3}+\alpha_{4}\mathbf{v}_{4}$. Show that $\mathbf{v}P_{1}^{n}\to\alpha_{1}\mathbf{v}_{1}+\alpha_{2}\mathbf{v}_{2}$ as $n\to\infty$. This shows that the long-time behavior of the $P_{1}$ Markov chain is rather simple! 
+\end{enumerate}
+%%%
+%%%
+\subsection{Random walk in dimension $2$}
+%%%
+Let $\mathbf{X}(n)=(X_{1}(n),X_{2}(n))$, where $X_{1},X_{2}$ are independent symmetric simple random walks such that $X_{1}(0),X_{2}(0)=0$ and $n\geq0$ is an integer. 
+%%%
+\begin{enumerate}
+\item Show that for any $n\geq0$, we have 
+%
+\begin{align*}
+\mathbb{P}[\mathbf{X}(2n)=(0,0)]=\binom{2n}{n}^{2}2^{-4n}.
+\end{align*}
+%
+Deduce that $\mathbb{P}[\mathbf{X}(2n)=(0,0)]\geq Cn^{-1}$ for all $n\geq1$, where $C\geq0$ is some fixed constant. (\emph{Hint}: use independence of $X_{1},X_{2}$.)
+\item Show that 
+%
+\begin{align*}
+\sum_{n=1}^{\infty}\mathbb{P}[\mathbf{X}(n)=(0,0)]=\infty,
+\end{align*}
+%
+and deduce that $\mathbf{X}$ has the origin as a recurrent state.
+\end{enumerate}
+%%%
+%%%
+\subsection{Random walk in dimensions greater than or equal to $3$}
+%%%
+Let $\mathbf{X}(n)=(X_{1}(n),\ldots,X_{d}(n))$, where $X_{1},\ldots,X_{d}$ are independent symmetric simple random walks such that $X_{1}(0),\ldots,X_{d}(0)=0$, and $n\geq0$ is an integer and $d\geq3$ is fixed.
+%%%
+\begin{enumerate}
+\item Show that $\mathbb{P}[\mathbf{X}(2n)=(0,\ldots,0)]\leq Cn^{-d/2}$ for all $n\geq1$, where $C$ depends only on $d$.
+\item Show that $\mathbf{X}$ has the origin as a transient state if $d\geq3$.
+\end{enumerate}
+%%%
+\subsection{Asymmetric simple random walk in dimension $1$}
+%%%
+Suppose $X$ is an asymmetric simple random walk on $\Z$. In particular, 
+%
+\begin{align*}
+\mathbb{P}[X(n+1)=x|X(n)]=\begin{cases}p&x=X(n)+1\\1-p&x=X(n)-1\\0&\mathrm{else}\end{cases}
+\end{align*}
+%
+where $p\neq\frac12$. Suppose $X(0)=0$. Define $S(n)=X(1)+\ldots+X(n)$ to be the random walk with $S(0)=0$.
+%%%
+\begin{enumerate}
+\item Show that the process $M_{n}=S(n)-(2p-1)n$ is a martingale with respect to the sequence $\{X(k)\}_{k\geq1}$. Show that $|M_{n+1}-M_{n}|\leq 10$ for all $n\geq0$.
+\item Show that for some constant $C>0$ independent of $n\geq0$, we have
+%
+\begin{align*}
+\mathbb{P}\left[|M_{n}|\geq n^{2/3}\right]\leq \exp\left\{-Cn^{1/3}\right\}
+\end{align*}
+%
+\item Show that $\mathbb{P}[S(n)=0]\leq\mathbb{P}[|M_{n}|\geq n^{2/3}]$ for $n$ large enough. Using the bound $\exp\{-Cn^{1/3}\}\leq C_{2}n^{-2}$ for some $C_{2}>0$ fixed, deduce that $X$ has $0$ as a transient state. (\emph{Hint}: the assumption $p\neq\frac12$ is crucial.)
+\end{enumerate}
+%%%
+\end{document}
+%%%
