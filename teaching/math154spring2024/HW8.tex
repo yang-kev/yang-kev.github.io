@@ -195,13 +195,13 @@ Let $\mathbf{X}(n)=(X_{1}(n),\ldots,X_{d}(n))$, where $X_{1},\ldots,X_{d}$ are i
 %%%
 \subsection{Asymmetric simple random walk in dimension $1$}
 %%%
-Suppose $X$ is an asymmetric simple random walk on $\Z$. In particular, 
+Suppose $\{X(n)\}_{n\geq1}$ is a sequence of i.i.d. random variables such that 
 %
 \begin{align*}
-\mathbb{P}[X(n+1)=x|X(n)]=\begin{cases}p&x=X(n)+1\\1-p&x=X(n)-1\\0&\mathrm{else}\end{cases}
+\mathbb{P}[X(n+1)=x]=\begin{cases}p&x=1\\1-p&x=-1\\0&\mathrm{else}\end{cases}
 \end{align*}
 %
-where $p\neq\frac12$. Suppose $X(0)=0$. Define $S(n)=X(1)+\ldots+X(n)$ to be the random walk with $S(0)=0$.
+where $p\neq\frac12$. Define $S(n)=X(1)+\ldots+X(n)$ to be the random walk with $S(0)=0$.
 %%%
 \begin{enumerate}
 \item Show that the process $M_{n}=S(n)-(2p-1)n$ is a martingale with respect to the sequence $\{X(k)\}_{k\geq1}$. Show that $|M_{n+1}-M_{n}|\leq 10$ for all $n\geq0$.
