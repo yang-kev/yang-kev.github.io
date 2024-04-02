@@ -1,0 +1,232 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+\usepackage{comment}
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 154: Probability Theory, HW 9\vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+%%%
+\section*{Due April 9, 2024 by 9am}
+%%%
+\emph{Remember, if you are stuck, take a look at the lemmas/theorems/examples from class, and see if anything looks familiar.}
+%%%
+\section{Some more practice with Markov chains}
+%%%
+%%%
+\subsection{Concrete example}
+%%%
+Fix $\alpha,\beta\in(0,1)$, and let $\{X_{n}\}_{n}$ be the Markov chain with transition matrix
+%
+\begin{align*}
+P=\begin{pmatrix}1-\alpha&\alpha\\\beta&1-\beta\end{pmatrix}
+\end{align*}
+%
+%%%
+\begin{enumerate}
+\item Compute the stationary distribution.
+\item For what values of $\alpha,\beta\in(0,1)$ is the Markov chain reversible in equilibrium?
+\end{enumerate}
+%%%
+%%%
+\subsection{Sometimes it helps to be lazy}
+%%%
+%%%
+\begin{enumerate}
+\item Suppose $\{X_{n}\}_{n}$ is the Markov chain with state space $\{\mathbf{s}_{1},\mathbf{s}_{2},\mathbf{s}_{3}\}$ such that with probability $1$, if $X_{n}=\mathbf{s}_{k}$, then $X_{n+1}=\mathbf{s}_{k+1}$ if $k<3$ and $X_{n+1}=\mathbf{s}_{1}$ if $k=3$ (in words, it keeps going right but loops back $3\mapsto1$). Write down its transition matrix.
+\item Let $P$ be the transition matrix from part (1). For any $z\in\C$, compute $\det[z\mathrm{I}_{3}-P]$, where $\mathrm{I}_{3}$ is the $3\times3$ identity matrix and $z$ is just multiplying every entry by $z$.
+\item In part (2), you should get a degree $3$ polynomial. Show that its roots $\lambda$ satisfy $|\lambda|=1$.
+\item Now, let $\{Y_{n}\}_{n}$ be the Markov chain with state space $\{\mathbf{s}_{1},\mathbf{s}_{2},\mathbf{s}_{3}\}$ such that 
+%
+\begin{align*}
+\mathbb{P}[Y_{n+1}=\mathbf{s}|Y_{n}=\mathbf{s}_{k}]=\begin{cases}\frac12&\mathbf{s}=\mathbf{s}_{k+1}\\\frac12&\mathbf{s}=\mathbf{s}_{k}\\0&\mathrm{else}\end{cases}
+\end{align*}
+%
+where $k+1$ is identified with $1$ if $k=3$. In words, $Y$ goes to the right with probability $1/2$, and with probability $1/2$, it stays put. Show (directly without using any theorem about irreducibility from class) that its transition matrix has one eigenvalue $\lambda_{1}=1$, and its other eigenvalues satisfy $|\lambda|<1$.
+\end{enumerate}
+%%%
+%%%
+\subsection{Going backwards?}
+%%%
+Let $\{X_{n}\}_{n}$ be the Markov chain with state space $\{A,B,C\}$ and transition matrix
+%
+\begin{align*}
+P=\begin{pmatrix}0.4&0.4&0.2\\0.6&0.2&0.2\\0.4&0.2&0.4\end{pmatrix}
+\end{align*}
+%
+Suppose that $X_{0}=A$ with probability $1$, just for simplicity.
+%%%
+\begin{enumerate}
+\item Compute the stationary distribution $\pi$ for $P$ (make sure the entries of $\pi$ are non-negative and add up to $1$). Show that $P$ has eigenvalue $1$ with multiplicity $1$.
+\item Compute limits as $n\to\infty$ of $\mathbb{P}[X_{n}=s]$ for $s\in\{A,B,C\}$.
+\item Compute $\lim_{n\to\infty}\mathbb{P}[X_{n-1}=C|X_{n}=B]$. (\emph{Hint}: use Bayes' rule)
+\end{enumerate}
+%%%
+%%%
+\subsection{A linear algebra interpretation of reversibility}
+%%%
+Suppose $P$ is a transition matrix of size $N\times N$ with stationary distribution $\pi$ with entries $\pi_{1},\ldots,\pi_{N}$. For any vectors $\mathbf{x},\mathbf{y}\in\R^{N}$ with entries $\mathbf{x}_{1},\ldots,\mathbf{x}_{N}$ and $\mathbf{y}_{1},\ldots,\mathbf{y}_{N}$ respectively, define 
+%
+\begin{align*}
+\langle \mathbf{x},\mathbf{y}\rangle:=\sum_{k}\mathbf{x}_{k}\mathbf{y}_{k}\pi_{k}.
+\end{align*}
+%
+Show $P$ is reversible with respect to $\pi$ if for any $\mathbf{x},\mathbf{y}\in\R^{N}$, we have $\langle\mathbf{x},P\mathbf{y}\rangle=\langle P\mathbf{x},\mathbf{y}\rangle$.  (\emph{Hint}: for showing reversibility of $P$, use the assumption $\langle\mathbf{x},P\mathbf{y}\rangle=\langle P\mathbf{x},\mathbf{y}\rangle$ with $\mathbf{x},\mathbf{y}$ being standard basis vectors.) 
+%%%
+\subsection{Brownian motion has the Markov property}
+%%%
+Recall that a Brownian motion $\{\mathbf{B}_{t}\}_{t\geq0}$ satisfies the following.
+%%%
+\begin{itemize}
+\item $\mathbf{B}_{0}$ with probability $1$.
+\item For any times $0<t_{1}<t_{2}<\ldots<t_{k+1}$, the vector $(\mathbf{B}_{t_{1}},\mathbf{B}_{t_{2}}-\mathbf{B}_{t_{1}},\ldots,\mathbf{B}_{t_{k+1}}-\mathbf{B}_{t_{k}})$ has independent Gaussian entries with variance $\E|\mathbf{B}_{t_{\ell+1}}-\mathbf{B}_{t_{\ell}}|^{2}=t_{\ell+1}-t_{\ell}$.
+\end{itemize}
+%%%
+Show that for any sequence of times $0<t_{1}<t_{2}<\ldots<t_{k+1}$ and any open set $A\subseteq\R$, we have 
+%
+\begin{align*}
+\mathbb{P}[\mathbf{B}_{t_{k+1}}\in A|\mathbf{B}_{t_{k}}=x_{k},\ldots,\mathbf{B}_{t_{1}}=x_{1}]=\mathbb{P}[\mathbf{B}_{t_{k+1}}\in A|\mathbf{B}_{t_{k}}=x_{k}].
+\end{align*}
+%
+(\emph{Hint}: it may help to first explain why $\mathbf{B}_{t_{k+1}}-\mathbf{B}_{t_{k}}$ is independent of $\mathbf{B}_{t_{\ell}}$ for all $1\leq\ell\leq k$.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+%%%
