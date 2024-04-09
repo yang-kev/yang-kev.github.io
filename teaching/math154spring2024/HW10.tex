@@ -1,0 +1,210 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+\usepackage{comment}
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 154: Probability Theory, HW 9\vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+%%%
+\section*{Due April 16, 2024 by 9am}
+%%%
+\emph{Remember, if you are stuck, take a look at the lemmas/theorems/examples from class, and see if anything looks familiar.}
+%%%
+\section{Getting our hands on Brownian motion}
+%%%
+%%%
+\subsection{A computation}
+%%%
+Consider the integral $\int_{0}^{t}\mathbf{B}_{s}^{2}\d s$.
+%%%
+\begin{enumerate}
+\item Compute $\E\int_{0}^{t}\mathbf{B}_{s}^{2}\d s$.
+\item Compute $\E|\int_{0}^{t}\mathbf{B}_{s}^{2}\d s|^{2}$. (\emph{Hint}: as in class, square the integral to get a double integral over $0\leq r\leq s\leq t$. For $r\leq s$, it may then help to write $\mathbf{B}_{s}^{2}\mathbf{B}_{r}^{2}=(\mathbf{B}_{s}-\mathbf{B}_{r}+\mathbf{B}_{r})^{2}\mathbf{B}_{r}^{2}=(\mathbf{B}_{s}-\mathbf{B}_{r})^{2}\mathbf{B}_{r}^{2}+2(\mathbf{B}_{s}-\mathbf{B}_{r})\mathbf{B}_{r}^{3}+\mathbf{B}_{r}^{4}$. Now use independence of increments and knowledge of the distribution of increments.)
+\item Deduce the variance of $\int_{0}^{t}\mathbf{B}_{s}^{2}\d s$.
+\end{enumerate}
+%%%
+%%%
+\subsection{Brownian Gambler's ruin (\emph{Hint}: use optional stopping!)}
+%%%
+Let $\mathbf{B}$ be Brownian motion, and fix $a,b>0$. Let $\tau_{a,b}$ be the first time $\tau$ such that $\mathbf{B}_{\tau}\in\{-a,b\}$.
+%%%
+\begin{enumerate}
+\item Find the probability that $\mathbf{B}_{\tau_{a,b}}=a$.
+\item Compute $\E\tau_{a,b}$.
+\end{enumerate}
+%%%
+%%%
+\subsection{Moment generating function of Gaussians, Brownian motion style}
+%%%
+Consider the process $\mathbf{M}_{t}:=\exp\left\{\lambda\mathbf{B}_{t}-\mu t\right\}$, where $\lambda,\mu\in\R$.
+%%%
+\begin{enumerate}
+\item Fix $\lambda\in\R$. For which $\mu=\mu(\lambda)\in\R$ does $\mathbf{M}$ satisfy the martingale property? ($\mu(\lambda)$ will depend on $\lambda$)
+\item Fix $\lambda\in\R$. Show that $\E\mathbf{M}_{1}=1$. In what follows, we will always take $\mathbf{M}_{t}$ for this choice of $\mu=\mu(\lambda)$.
+\item Deduce that if $Z\sim N(0,1)$, then $\E e^{\lambda Z}=e^{\lambda^{2}/2}$. (\emph{Hint}: recall $\mathbf{B}_{1}\sim N(0,1)$.)
+\end{enumerate}
+%%%
+%%%
+\subsection{Ergodicity of the OU process}
+%%%
+Suppose $X_{t}$ is an OU process with initial condition $X_{0}$, that is $\d X_{t}=- X_{t}\d t+\d\mathbf{B}_{t}$, where $\mathbf{B}_{t}$ is a Brownian motion.
+%%%
+\begin{enumerate}
+\item Show that $N(0,1)$ is an invariant distribution for the OU process (see the notes for what this means).
+\item Let $Z_{t}$ be an OU process with initial condition $Z_{0}\sim N(0,1)$. That is, $\d Z_{t}=- Z_{t}+\d\mathbf{B}_{t}$, where $\mathbf{B}$ is the \emph{same} Brownian motion from above. Define $Y_{t}=X_{t}-Z_{t}$. Show that $Y_{t}=Y_{0}e^{-t}$ for all $t\geq0$. Deduce that $Y_{t}\to0$ as $t\to\infty$. (\emph{Hint}: compute the differential equation solved by $Y_{t}$ using the SDEs for $X_{t},Z_{t}$; you can use that any solution to $f'(t)=-f(t)$ is given by $f(t)=f(0)e^{-t}$.)
+\end{enumerate}
+%%%
+%%%
+\subsection{Brownian bridge}
+%%%
+The Brownian bridge is a ``Brownian motion conditioned to hit $0$ at time $1$". The point of this exercise is to make this precise in a more natural way. 
+
+Let $\{z_{k}\}_{k=1}^{\infty}$ be a collection of i.i.d. $N(0,1)$ random variables. For any $N>0$, define 
+%
+\begin{align*}
+\mathbf{Z}^{(N)}_{t}:=\sum_{k=1}^{N}\frac{z_{k}\sqrt{2}}{k\pi}\sin(k\pi t).
+\end{align*}
+%
+Show that $\mathbf{Z}^{(N)}_{0}=\mathbf{Z}^{(N)}_{1}=0$. Show that $\E\mathbf{Z}^{(N)}_{t}=0$ and that
+%
+\begin{align*}
+\E|\mathbf{Z}^{(N)}_{t}-\mathbf{Z}^{(M)}_{t}|^{2}\to_{N,M\to\infty}0.
+\end{align*}
+%
+%%%
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+%%%
