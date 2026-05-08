@@ -1,0 +1,268 @@
+\documentclass[12pt,reqno]{amsart}
+
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{times}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+
+\usepackage{xcolor}
+%\usepackage{hyperref}
+%\hypersetup{
+   %linktoc=all,
+    %colorlinks=true
+    %citecolor=blue
+%}
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rem}{Remark}
+\numberwithin{equation}{section}
+
+\urlstyle{same}
+
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+\usepackage[scr]{rsfso}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage[integrals]{wasysym}
+
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+
+\newcommand\nc{\newcommand}
+\nc{\E}{\mathbb{E}}
+\nc{\R}{\mathbb R}
+\nc{\C}{\mathbb C}
+\nc{\Z}{\mathbb Z}
+\nc{\wt}{\widetilde}
+\nc{\rnc}{\renewcommand}
+\nc{\e}{\varepsilon}
+\nc{\grad}{\nabla}
+%\nc{\fsp}{\fontdimen2\font=2.21pt}
+\nc{\fsp}{}
+
+\rnc{\t}{{t}}
+\nc{\s}{{s}}
+\nc{\x}{{x}}
+\nc{\y}{{y}}
+\nc{\w}{{w}}
+\nc{\z}{{z}}
+\rnc{\r}{{r}}
+\rnc{\k}{{k}}
+\rnc{\j}{{j}}
+\nc{\m}{{m}}
+\nc{\n}{{n}}
+\rnc{\i}{{i}}
+\nc{\p}{{p}}
+\rnc{\textstyle}{{}}
+
+
+
+%\rnc{\t}{\mathrm{t}}
+%\nc{\s}{\mathrm{s}}
+%\nc{\x}{\mathrm{x}}
+%\nc{\y}{\mathrm{y}}
+%\nc{\w}{\mathrm{w}}
+%\nc{\z}{\mathrm{z}}
+%\rnc{\r}{\mathrm{r}}
+%\rnc{\k}{\mathrm{k}}
+%\rnc{\j}{\mathrm{j}}
+%\nc{\m}{\mathrm{m}}
+%\nc{\n}{\mathrm{n}}
+%\rnc{\i}{\mathrm{i}}
+%\nc{\p}{\mathrm{p}}
+
+
+\nc{\abbr}[1]{{\sc\lowercase{#1}}}
+
+\rnc{\leq}{\leqslant}
+\rnc{\geq}{\geqslant}
+\rnc{\d}{\mathrm{d}}
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+\pagestyle{plain}
+
+
+
+
+\title{\Large Math 117, Final \vspace{-0.1cm}}
+
+
+
+
+
+\usepackage{setspace}
+\begin{document}
+%\pdfrender{StrokeColor=gray,TextRenderingMode=2,LineWidth=0.01pt}
+\setstretch{0.97}
+\begin{nouppercase}
+\maketitle
+\end{nouppercase}
+
+There are five problems total, and each problem is worth 10 points, {\color{red}and please show your work!} If you have any questions, e.g. about potential typos, please feel free to ask -- thank you!
+
+
+%%%
+\section{Dow Jones}
+%%%
+%%%
+\begin{enumerate}
+\item The Dow Jones had the following (approximate) annual returns in the last five years:
+%
+\begin{align*}
+2021: &19\%\\
+2022: &-9\%\\
+2023: &14\%\\
+2024: &13\%\\
+2025: &13\%
+\end{align*}
+%
+What is the five-year annualized return? (I.e., find $r$ such that $(1+r)^{5}=(1+r_{1})\cdot(1+r_{2})\cdot\ldots\cdot(1+r_{5})$, where $r_{1},\ldots,r_{5}$ are the returns in the five years above.) Write your answer in a percentage, and approximate up to whole number percentages.
+\end{enumerate}
+%%%
+
+
+
+\newpage
+
+%%%
+\section{A stock price martingale}
+%%%
+Recall the discrete-time stock price model, where the random variables $\frac{S_{1}}{S_{0}},\frac{S_{2}}{S_{1}},\ldots,\frac{S_{n+1}}{S_{n}},\ldots$ are independent random variables such that, for $0<d<1+r<u$, we have 
+%
+\begin{align*}
+\mathbb{P}\Big(\frac{S_{j+1}}{S_{j}}=u\Big)=\frac{1+r-d}{u-d} \quad\text{and}\quad \mathbb{P}\Big(\frac{S_{j+1}}{S_{j}}=d\Big)=\frac{u-1-r}{u-d}.
+\end{align*}
+%
+Note that the previous two probabilities add to $1$.
+%%%
+\begin{enumerate}
+\item By computing directly, check that the following holds for all $n\geq0$:
+%
+\begin{align*}
+\E\Big(\frac{1}{(1+r)^{n+1}}S_{n+1}\Big|S_{n}\Big)=\frac{1}{(1+r)^{n}}S_{n}.
+\end{align*}
+%
+\item If $\tau$ is a stopping time, what theorem allows us to deduce\footnote{We mentioned in class that one has to be careful about whether or not one can even apply the theorem, but as we also mentioned in class, don't worry about that here}
+%
+\begin{align*}
+\E\Big(\frac{1}{(1+r)^{\tau}}S_{\tau}\Big)=S_{0}?
+\end{align*}
+%
+{\bf Just state the theorem, no explanation needed (this part has no partial credit). Or describe the theorem if you cannot remember the name.}
+\item Assume that $S_{0}=1$. Let $\tau$ be the first time that $S_{n}$ hits $2$.\footnote{You can arrange for $u,d$ so that the first time it hits $2$ is also the first time it is at least $2$, e.g. choose $u=2$ and $d=\frac12$; assume this is the case.} Compute $\E((1+r)^{-\tau})$.
+\end{enumerate}
+%%%
+
+
+
+
+
+
+
+\newpage
+
+
+%%%
+\section{Options pricing with no interest}
+%%%
+Recall the Black-Scholes formula for a European call with $r=0$ and $\sigma=1$ and $K=1$ and $\mathbf{S}_{0}=1$:
+%
+\begin{align*}
+\mathbf{C}=\boldsymbol{\Phi}(\d_{1})-\boldsymbol{\Phi}(\d_{2})
+\end{align*}
+%
+where
+%
+\begin{align*}
+\d_{1}=\frac12T^{\frac12}\quad\text{and}\quad\d_{2}=-\frac12T^{\frac12}\quad\text{and}\quad\boldsymbol{\Phi}(x)=\int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}\mathrm{e}^{-\frac12y^{2}}\d y.
+\end{align*}
+%
+%%%
+\begin{enumerate}
+\item Recall that 
+%
+\begin{align*}
+\frac{\d}{\d T}\mathbf{C}>0.
+\end{align*}
+%
+Use this to explain in one sentence why a Bermuda call is the same price as a European call.\footnote{Recall a Bermuda call is a European call, but you can exercise the option at any of a finite, pre-determined set of times up until the maturity date, not just the maturity date.} (\emph{Hint}: what does this positivity tell you about the price as a function of time?)
+\item Put-call parity states that $\mathbf{C}+K\mathrm{e}^{-rT}=\mathbf{P}+\mathbf{S}_{0}$ in general, where $\mathbf{P}$ is the put value. Use this in the setting above (with $r=0$ and $\sigma=1$ and $K=1$ and $\mathbf{S}_{0}=1$) to explain in one sentence why we have 
+%
+\begin{align*}
+\frac{\d}{\d T}\mathbf{P}>0.
+\end{align*}
+%
+Use this to explain in one sentence why a Bermuda put has the same price as a European put.\footnote{Recall a Bermuda put is a European put, but you can exercise the option at any of a finite, pre-determined set of times up until the maturity date, not just the maturity date.}\end{enumerate}
+%%%
+
+
+
+
+
+
+\newpage
+
+
+
+
+%%%
+\section{Risk}
+%%%
+Suppose $\alpha_{1},\alpha_{2}\in\R$ with $\alpha_{1}+\alpha_{2}=1$. Suppose $R_{1},R_{2}$ are returns of two investments such that $\E R_{1}=0$ and $\E R_{2}=0$ and $\E R_{1}^{2}=1$ and $\E R_{2}^{2}=2$ and $\E R_{1}R_{2}=\frac12$.
+%%%
+\begin{enumerate}
+\item Compute the risk $\E[(\alpha_{1}R_{1}+\alpha_{2}R_{2})^{2}]$ in terms of just $\alpha_{1}$.
+\item Find the $\alpha_{1}\in\R$ that minimizes this risk.
+\end{enumerate}
+%%%
+
+
+
+
+\newpage
+
+
+
+
+%%%
+\section{What topics did you like, not like (as much)?}
+%%%
+Just one for each, no offense will be taken! And why or why not? (Yes, this counts for 10 points.)
+
+
+
+
+
+
+
+\end{document}
+%%%
